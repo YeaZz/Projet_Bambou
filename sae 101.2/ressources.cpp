@@ -192,24 +192,19 @@ void reduce_algorithm(Garden& garden, Panda& panda, Ui& ui, Statistics& statisti
 	{
 		panda.in_charge = true;
 	}
-	if (!panda.in_charge)
-	{
-		if (statistics.algorithm == 1)
-		{
+	if (!panda.in_charge) {
+		if (statistics.algorithm == 1) {
 			//Algoirithme du max
 			int max = 0, position = 0;
-			for (int i = 0; i < garden.nb_bambou; i++)
-			{
-				if (garden.bambou_slots[i].size > max)
-				{
+			for (int i = 0; i < garden.nb_bambou; i++) {
+				if (garden.bambou_slots[i].size > max) {
 					max = garden.bambou_slots[i].size;
 					position = i;
 				}
 			}
 			panda.position = position;
 		}
-		else if (statistics.algorithm == 2)
-		{
+		else if (statistics.algorithm == 2) {
 			//Algorithme de Reduce-Fastest
 			double x = statistics.x;
 			int fastest = 0, i, storpos = 0;
@@ -217,10 +212,8 @@ void reduce_algorithm(Garden& garden, Panda& panda, Ui& ui, Statistics& statisti
 			bool passed = false;
 
 			for (i = 0; i < garden.nb_bambou; i++) {
-				if (garden.bambou_slots[i].size > limite_coupe)
-				{
-					if (garden.bambou_slots[i].coefficient_growth > fastest)
-					{
+				if (garden.bambou_slots[i].size > limite_coupe) {
+					if (garden.bambou_slots[i].coefficient_growth > fastest) {
 						passed = true;
 						fastest = garden.bambou_slots[i].coefficient_growth;
 						storpos = i;
@@ -228,14 +221,11 @@ void reduce_algorithm(Garden& garden, Panda& panda, Ui& ui, Statistics& statisti
 				}
 			}
 			panda.position = storpos;
-			if (!passed)
-			{
+			if (!passed) {
 				panda.in_charge = true;
 			}
-		}
-		else
-		{
-			//Algorithme alÃ©atoire (le piiire)
+		} else {
+			//Algorithme aléatoire (le piiire)
 			panda.position = rand() % (garden.nb_bambou + 1);
 		}
 	}
